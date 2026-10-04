@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>BELLANOVA | Facturación</title>
+
+    <link rel="stylesheet"
+          href="css/estilo.css">
+
+    <style>
+        /* Estilos para el simulador de pago */
+        .modal-pago-oculto {
+            display: none;
+        }
+        .modal-pago-visible {
+            display: flex;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-contenido {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            width: 400px;
+            max-width: 90%;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            animation: deslizarArriba 0.3s ease-out;
+        }
+        @keyframes deslizarArriba {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        .modal-header h3 { margin: 0; color: #333; }
+        .cerrar-modal {
+            font-size: 24px;
+            font-weight: bold;
+            color: #888;
+            cursor: pointer;
+        }
+        .cerrar-modal:hover { color: #333; }
+        .btn-tarjeta {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .btn-tarjeta:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
+        .grupo-formulario-modal {
+            margin-bottom: 15px;
+        }
+        .grupo-formulario-modal label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+            font-size: 14px;
+        }
+        .grupo-formulario-modal input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 15px;
+            font-family: inherit;
+        }
+        .grupo-formulario-modal input:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0,123,255,0.3);
+        }
+    </style>
+
+</head>
+
+<body>
+
+<header class="encabezado">
+
+    <div class="logo">
+        BELLANOVA
+    </div>
+
+    <div class="subtitulo">
+        Tienda de Cosméticos
+    </div>
+
+</header>
+
+
+<nav class="menu">
+
+    <a href="inicio.html">🏠 Inicio</a>
+
+    <a href="productos.html">💄 Productos</a>
+
+    <a href="clientes.html">👩 Clientes</a>
+
+    <a href="facturacion.html">🧾 Facturación</a>
+
+    <a href="cierre-caja.html">💰 Cierre de Caja</a>
+
+    <a href="historial.html">📋 Historial</a>
+    
+    <button class="boton-salir" onclick="cerrarSesion()">
+        🚪 Cerrar sesión
+    </button>
+
+</nav>
+
+
+<main class="principal">
+
+    <section class="bienvenida">
+
+        <h1>🧾 Nueva Factura</h1>
+
+        <p>
+            Sistema de facturación BELLANOVA
+        </p>
+
+    </section>
+
+
+    <!-- DATOS DE FACTURA -->
+
+    <section class="formulario-producto">
+
+        <h2>📄 Datos de la Factura</h2>
+
+        <div class="datos-factura">
+
+            <div class="grupo-formulario">
+
+                <label>Número de factura:</label>
+
+                <input
+                    type="text"
+                    id="numeroFactura"
+                    readonly>
+
+            </div>
+
+
+            <div class="grupo-formulario">
+
+                <label>Fecha:</label>
+
+                <input
+                    type="date"
+                    id="fechaFactura">
+
+            </div>
+
+
+            <div class="grupo-formulario">
+
+                <label>Cliente:</label>
+
+                <select id="clienteFactura">
+
+                    <option value="">
+                        Seleccione un cliente
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- AGREGAR PRODUCTO -->
+
+    <section class="formulario-producto">
+
+        <h2>🛍️ Agregar Producto</h2>
+
+        <div class="datos-factura">
+
+            <div class="grupo-formulario">
+
+                <label>Producto:</label>
+
+                <select id="productoFactura">
+
+                    <option value="">
+                        Seleccione un producto
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="grupo-formulario">
+
+                <label>Cantidad:</label>
+
+                <input
+                    type="number"
+                    id="cantidadFactura"
+                    value="1"
+                    min="1">
+
+            </div>
+
+        </div>
+
+
+        <button
+            type="button"
+            class="boton"
+            onclick="agregarProductoFactura()">
+
+            ➕ Agregar Producto
+
+        </button>
+
+    </section>
+
+
+    <!-- DETALLE -->
+
+    <section>
+
+        <h2>📋 Detalle de Factura</h2>
+
+        <div class="tabla-contenedor">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Código</th>
+
+                        <th>Producto</th>
+
+                        <th>Cantidad</th>
+
+                        <th>Precio</th>
+
+                        <th>Subtotal</th>
+
+                        <th>Acción</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="detalleFactura">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- TOTALES -->
+
+    <section class="totales">
+
+        <div>
+
+            <span>Subtotal:</span>
+
+            <strong id="subtotalFactura">
+                L. 0.00
+            </strong>
+
+        </div>
+
+
+        <div>
+
+            <span>Impuesto (15%):</span>
+
+            <strong id="impuestoFactura">
+                L. 0.00
+            </strong>
+
+        </div>
+
+
+        <div class="total-final">
+
+            <span>TOTAL:</span>
+
+            <strong id="totalFactura">
+                L. 0.00
+            </strong>
+
+        </div>
+
+    </section>
+
+
+    <!-- BOTONES -->
+
+    <section class="botones-factura">
+
+        <button
+            type="button"
+            class="boton btn-tarjeta"
+            onclick="abrirModalPago()"
+            style="background-color: #007bff; color: white;">
+
+            💳 Cobrar con Tarjeta
+
+        </button>
+
+        <button
+            type="button"
+            class="boton btn-tarjeta"
+            onclick="abrirModalEfectivo()"
+            style="background-color: #28a745; color: white; margin-left: 10px;">
+
+            💵 Cobrar en Efectivo
+
+        </button>
+
+        <button
+            type="button"
+            class="boton"
+            onclick="guardarFactura()">
+
+            💾 Guardar Factura
+
+        </button>
+
+
+        <button
+            type="button"
+            class="boton boton-imprimir"
+            onclick="imprimirFactura()">
+
+            🖨️ Imprimir Factura
+
+        </button>
+
+
+        <button
+            type="button"
+            class="boton boton-secundario"
+            onclick="nuevaFactura()">
+
+            🧹 Nueva Factura
+
+        </button>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <p>
+        © 2026 BELLANOVA - Tienda de Cosméticos
+    </p>
+
+    <p>
+        Sistema de Facturación
+    </p>
+
+</footer>
+
+
+<!-- MODAL DE PAGO (SIMULADOR) -->
+<div id="modalPago" class="modal-pago-oculto">
+    <div class="modal-contenido">
+        <div class="modal-header">
+            <h3>💳 Pago con Tarjeta</h3>
+            <span class="cerrar-modal" onclick="cerrarModalPago()">&times;</span>
+        </div>
+        <div class="modal-body">
+            <p style="font-size: 18px; text-align: center; margin-bottom: 20px;">Total a cobrar: <strong id="totalCobrarModal" style="color: #28a745;">L. 0.00</strong></p>
+            
+            <div class="grupo-formulario-modal">
+                <label>Nombre en la tarjeta:</label>
+                <input type="text" id="nombreTarjeta" placeholder="EJ. JUAN PEREZ">
+            </div>
+            
+            <div class="grupo-formulario-modal">
+                <label>Número de Tarjeta:</label>
+                <input type="text" id="numeroTarjeta" placeholder="1234 5678 9101 1121" maxlength="19">
+            </div>
+            
+            <div style="display: flex; gap: 10px;">
+                <div class="grupo-formulario-modal" style="flex: 1;">
+                    <label>Vencimiento:</label>
+                    <input type="text" id="vencimientoTarjeta" placeholder="MM/AA" maxlength="5">
+                </div>
+                <div class="grupo-formulario-modal" style="flex: 1;">
+                    <label>CVV:</label>
+                    <input type="password" id="cvvTarjeta" placeholder="123" maxlength="4">
+                </div>
+            </div>
+
+            <div id="mensajePago" style="display: none; text-align: center; margin-top: 15px; font-weight: bold; padding: 10px; border-radius: 6px;"></div>
+            
+            <button type="button" class="btn-tarjeta" style="width: 100%; margin-top: 20px; background-color: #28a745; font-size: 18px; padding: 12px;" onclick="procesarPago()">
+                ✔️ Procesar Pago
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL DE PAGO EN EFECTIVO (SIMULADOR) -->
+<div id="modalEfectivo" class="modal-pago-oculto">
+    <div class="modal-contenido">
+        <div class="modal-header">
+            <h3>💵 Pago en Efectivo</h3>
+            <span class="cerrar-modal" onclick="cerrarModalEfectivo()">&times;</span>
+        </div>
+        <div class="modal-body">
+            <p style="font-size: 18px; text-align: center; margin-bottom: 20px;">Total a cobrar: <strong id="totalCobrarEfectivoModal" style="color: #28a745;">L. 0.00</strong></p>
+            
+            <div class="grupo-formulario-modal">
+                <label>Efectivo Recibido (L.):</label>
+                <input type="number" id="efectivoRecibido" placeholder="Ej. 500" min="0" oninput="calcularCambio()" style="font-size: 18px; font-weight: bold;">
+            </div>
+            
+            <div class="grupo-formulario-modal">
+                <label>Cambio a entregar:</label>
+                <input type="text" id="cambioEntregar" value="L. 0.00" readonly style="background-color: #f8f9fa; font-weight: bold; color: #17a2b8; font-size: 18px;">
+            </div>
+
+            <div id="mensajeEfectivo" style="display: none; text-align: center; margin-top: 15px; font-weight: bold; padding: 10px; border-radius: 6px;"></div>
+            
+            <button type="button" id="btnCompletarEfectivo" class="btn-tarjeta" style="width: 100%; margin-top: 20px; background-color: #6c757d; font-size: 18px; padding: 12px;" onclick="procesarPagoEfectivo()" disabled>
+                ✔️ Completar Pago
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Lógica del simulador de pagos
+    function abrirModalPago() {
+        const total = document.getElementById("totalFactura").innerText;
+        // Si el total es 0, no dejar pagar (asumiendo que empieza en L. 0.00)
+        if(total === "L. 0.00" || total === "L. 0") {
+            alert("⚠️ Agregue productos a la factura antes de cobrar.");
+            return;
+        }
+        document.getElementById("totalCobrarModal").innerText = total;
+        document.getElementById("modalPago").className = "modal-pago-visible";
+        document.getElementById("mensajePago").style.display = "none";
+        
+        // Limpiar campos
+        document.getElementById("nombreTarjeta").value = "";
+        document.getElementById("numeroTarjeta").value = "";
+        document.getElementById("vencimientoTarjeta").value = "";
+        document.getElementById("cvvTarjeta").value = "";
+    }
+
+    function cerrarModalPago() {
+        document.getElementById("modalPago").className = "modal-pago-oculto";
+    }
+
+    // Formatear número de tarjeta automáticamente
+    document.getElementById("numeroTarjeta").addEventListener("input", function (e) {
+        let value = e.target.value.replace(/\D/g, "");
+        value = value.replace(/(.{4})/g, "$1 ").trim();
+        e.target.value = value;
+    });
+
+    // Formatear fecha de vencimiento
+    document.getElementById("vencimientoTarjeta").addEventListener("input", function (e) {
+        let value = e.target.value.replace(/\D/g, "");
+        if (value.length > 2) {
+            value = value.substring(0, 2) + "/" + value.substring(2, 4);
+        }
+        e.target.value = value;
+    });
+
+    function procesarPago() {
+        const numTarjeta = document.getElementById("numeroTarjeta").value;
+        const nombre = document.getElementById("nombreTarjeta").value;
+        const vencimiento = document.getElementById("vencimientoTarjeta").value;
+        const cvv = document.getElementById("cvvTarjeta").value;
+        const btnProcesar = document.querySelector("#modalPago .modal-body button");
+        const mensaje = document.getElementById("mensajePago");
+
+        if(numTarjeta.length < 19 || nombre.trim() === "" || vencimiento.length < 5 || cvv.length < 3) {
+            mensaje.style.display = "block";
+            mensaje.style.backgroundColor = "#f8d7da";
+            mensaje.style.color = "#721c24";
+            mensaje.innerText = "❌ Por favor completa todos los datos correctamente.";
+            return;
+        }
+
+        // Animación de carga
+        btnProcesar.innerHTML = "⏳ Procesando...";
+        btnProcesar.disabled = true;
+        btnProcesar.style.backgroundColor = "#6c757d";
+        mensaje.style.display = "none";
+
+        // Simular conexión de 2.5 segundos
+        setTimeout(() => {
+            btnProcesar.innerHTML = "✔️ Procesar Pago";
+            btnProcesar.disabled = false;
+            btnProcesar.style.backgroundColor = "#28a745";
+
+            // Validar tarjeta "mágica" de falla (si empieza con 0000)
+            if(numTarjeta.startsWith("0000")) {
+                mensaje.style.display = "block";
+                mensaje.style.backgroundColor = "#f8d7da";
+                mensaje.style.color = "#721c24";
+                mensaje.innerText = "❌ Tarjeta rechazada por fondos insuficientes.";
+            } else {
+                mensaje.style.display = "block";
+                mensaje.style.backgroundColor = "#d4edda";
+                mensaje.style.color = "#155724";
+                mensaje.innerText = "✅ ¡Pago Exitoso! Guardando factura...";
+                
+                // Llamamos la función original de guardar factura
+                setTimeout(() => {
+                    cerrarModalPago();
+                    if (typeof guardarFactura === 'function') {
+                        guardarFactura();
+                    }
+                }, 1500);
+            }
+        }, 2500);
+    }
+
+    // --- LÓGICA DE PAGO EN EFECTIVO ---
+    let totalEfectivoActual = 0;
+
+    function abrirModalEfectivo() {
+        const totalText = document.getElementById("totalFactura").innerText;
+        if(totalText === "L. 0.00" || totalText === "L. 0") {
+            alert("⚠️ Agregue productos a la factura antes de cobrar.");
+            return;
+        }
+        document.getElementById("totalCobrarEfectivoModal").innerText = totalText;
+        totalEfectivoActual = parseFloat(totalText.replace("L.", "").replace(/,/g, "").trim());
+        
+        document.getElementById("modalEfectivo").className = "modal-pago-visible";
+        document.getElementById("mensajeEfectivo").style.display = "none";
+        
+        // Limpiar campos
+        document.getElementById("efectivoRecibido").value = "";
+        document.getElementById("cambioEntregar").value = "L. 0.00";
+        document.getElementById("btnCompletarEfectivo").disabled = true;
+        document.getElementById("btnCompletarEfectivo").style.backgroundColor = "#6c757d";
+        
+        // Enfocar el campo de efectivo automáticamente
+        setTimeout(() => document.getElementById("efectivoRecibido").focus(), 100);
+    }
+
+    function cerrarModalEfectivo() {
+        document.getElementById("modalEfectivo").className = "modal-pago-oculto";
+    }
+
+    function calcularCambio() {
+        const recibidoStr = document.getElementById("efectivoRecibido").value;
+        const recibido = parseFloat(recibidoStr);
+        const btnCompletar = document.getElementById("btnCompletarEfectivo");
+
+        if (isNaN(recibido) || recibido < totalEfectivoActual) {
+            document.getElementById("cambioEntregar").value = "Faltan fondos";
+            document.getElementById("cambioEntregar").style.color = "red";
+            btnCompletar.disabled = true;
+            btnCompletar.style.backgroundColor = "#6c757d";
+        } else {
+            const cambio = recibido - totalEfectivoActual;
+            document.getElementById("cambioEntregar").value = "L. " + cambio.toFixed(2);
+            document.getElementById("cambioEntregar").style.color = "#17a2b8";
+            btnCompletar.disabled = false;
+            btnCompletar.style.backgroundColor = "#28a745";
+        }
+    }
+
+    function procesarPagoEfectivo() {
+        const btnProcesar = document.getElementById("btnCompletarEfectivo");
+        const mensaje = document.getElementById("mensajeEfectivo");
+
+        // Animación rápida
+        btnProcesar.innerHTML = "⏳ Procesando...";
+        btnProcesar.disabled = true;
+        btnProcesar.style.backgroundColor = "#6c757d";
+        mensaje.style.display = "none";
+
+        setTimeout(() => {
+            btnProcesar.innerHTML = "✔️ Completar Pago";
+            
+            mensaje.style.display = "block";
+            mensaje.style.backgroundColor = "#d4edda";
+            mensaje.style.color = "#155724";
+            mensaje.innerText = "✅ ¡Pago en Efectivo Exitoso! Guardando factura...";
+            
+            setTimeout(() => {
+                cerrarModalEfectivo();
+                if (typeof guardarFactura === 'function') {
+                    guardarFactura();
+                }
+            }, 1500);
+        }, 1000);
+    }
+</script>
+
+<script src="js/sistema.js"></script>
+
+</body>
+
+</html>

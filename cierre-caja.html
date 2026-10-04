@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cierre de Caja - BELLANOVA</title>
+
+    <link rel="stylesheet" href="css/estilo.css">
+</head>
+
+<body>
+
+<header class="encabezado">
+
+    <div class="logo">
+        BELLANOVA
+    </div>
+
+    <div class="subtitulo">
+        Tienda de Cosméticos
+    </div>
+
+</header>
+
+
+<nav class="menu">
+
+    <a href="inicio.html">🏠 Inicio</a>
+
+    <a href="productos.html">💄 Productos</a>
+
+    <a href="clientes.html">👩 Clientes</a>
+
+    <a href="facturacion.html">🧾 Facturación</a>
+
+    <a href="cierre-caja.html">💰 Cierre de Caja</a>
+
+    <a href="historial.html">📋 Historial</a>
+    
+    <button class="boton-salir" onclick="cerrarSesion()">
+        🚪 Cerrar sesión
+    </button>
+
+</nav>
+
+<main class="principal">
+
+    <section class="bienvenida">
+
+        <h1>💰 Cierre de Caja</h1>
+
+        <p>
+            Resumen de ventas y cierre del turno de caja.
+        </p>
+
+    </section>
+
+    <section class="formulario-producto">
+
+    <div class="tarjeta-cierre">
+
+        <h3>Resumen del turno</h3>
+
+        <p>
+            <strong>Usuario:</strong>
+            <span id="usuarioCaja"></span>
+        </p>
+
+        <p>
+            <strong>Fecha:</strong>
+            <span id="fechaCaja"></span>
+        </p>
+
+        <hr>
+
+        <p>
+            <strong>Facturas realizadas:</strong>
+            <span id="cantidadFacturas">0</span>
+        </p>
+
+        <p>
+            <strong>Subtotal vendido:</strong>
+            L. <span id="subtotalCaja">0.00</span>
+        </p>
+
+        <p>
+            <strong>Impuesto:</strong>
+            L. <span id="impuestoCaja">0.00</span>
+        </p>
+
+        <h2>
+            TOTAL VENDIDO:
+            L. <span id="totalCaja">0.00</span>
+        </h2>
+
+        <button
+            class="boton"
+            onclick="realizarCierre()">
+            🔒 REALIZAR CIERRE
+        </button>
+
+    </div>
+
+    </section>
+
+</main>
+
+<footer>
+
+    <p>
+        © 2026 BELLANOVA - Tienda de Cosméticos
+    </p>
+
+    <p>
+        Sistema de Facturación
+    </p>
+
+</footer>
+
+<script src="js/sistema.js"></script>
+
+</body>
+</html>

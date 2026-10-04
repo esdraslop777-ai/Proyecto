@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Login - BELLANOVA</title>
+
+    <link rel="stylesheet"
+          href="css/estilo.css">
+
+</head>
+
+<body class="login-body">
+
+    <div class="login-contenedor">
+
+        <div class="login-caja">
+
+            <h1>BELLANOVA</h1>
+
+            <p class="login-subtitulo">
+                Sistema de Facturación
+            </p>
+
+            <div class="login-icono">
+                💄
+            </div>
+
+            <form id="formLogin">
+
+                <div class="grupo-formulario">
+
+                    <label for="usuario">
+                        Usuario
+                    </label>
+
+                    <input
+                        type="text"
+                        id="usuario"
+                        placeholder="Ingrese su usuario"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="grupo-formulario">
+
+                    <label for="clave">
+                        Contraseña
+                    </label>
+
+                    <input
+                        type="password"
+                        id="clave"
+                        placeholder="Ingrese su contraseña"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="boton boton-login">
+
+                    INGRESAR
+
+                </button>
+
+            </form>
+
+            <p id="mensajeLogin"
+               class="mensaje-login">
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <script src="js/sistema.js"></script>
+
+<script>document.getElementById("formLogin").addEventListener("submit", function(e){e.preventDefault(); window.location.href="inicio.html";});</script></body>
+
+</html>

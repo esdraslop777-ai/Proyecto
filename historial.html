@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Historial - BELLANOVA</title>
+
+    <link rel="stylesheet" href="css/estilo.css">
+</head>
+
+<body>
+
+<header class="encabezado">
+
+    <h1 class="logo">BELLANOVA</h1>
+
+    <p class="subtitulo">Tienda de Cosméticos</p>
+
+</header>
+
+<nav class="menu">
+
+    <a href="inicio.html">🏠 Inicio</a>
+
+    <a href="productos.html">💄 Productos</a>
+
+    <a href="clientes.html">👩 Clientes</a>
+
+    <a href="facturacion.html">🧾 Facturación</a>
+    
+    <a href="cierre-caja.html">💰 Cierre de Caja</a>
+
+    <a href="historial.html">📋 Historial</a>
+    
+    <button class="boton-salir" onclick="cerrarSesion()">
+        🚪 Cerrar sesión
+    </button>
+
+</nav>
+
+<main class="principal">
+
+    <section class="bienvenida">
+
+        <h2>📋 Historial de Facturas</h2>
+
+        <p>
+            Aquí puedes consultar todas las facturas realizadas en BELLANOVA.
+        </p>
+
+    </section>
+
+    <!-- BUSCADOR -->
+
+    <div class="busqueda">
+
+        <input
+            type="text"
+            id="buscarFactura"
+            placeholder="🔎 Buscar por número o cliente..."
+            onkeyup="buscarFactura()"
+        >
+
+    </div>
+
+    <!-- TABLA -->
+
+    <div class="tabla-contenedor">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>N° Factura</th>
+                    <th>Cliente</th>
+                    <th>Fecha</th>
+                    <th>Subtotal</th>
+                    <th>Impuesto</th>
+                    <th>Total</th>
+                    <th>Acciones</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="tablaFacturas">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <div id="sinFacturas" class="sin-productos">
+
+        📋 No hay facturas registradas.
+
+    </div>
+
+</main>
+
+<footer>
+
+    <p>© 2026 BELLANOVA - Tienda de Cosméticos</p>
+
+</footer>
+
+<script src="js/sistema.js"></script>
+
+</body>
+</html>
