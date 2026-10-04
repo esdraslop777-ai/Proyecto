@@ -1,0 +1,1160 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #fff5fa;
+    color: #333;
+}
+
+
+/* =========================
+   ENCABEZADO
+========================= */
+
+.encabezado {
+    text-align: center;
+    padding: 35px 20px;
+
+    background: linear-gradient(
+        135deg,
+        #e83e8c,
+        #9d174d
+    );
+
+    color: white;
+}
+
+.logo {
+    font-size: 42px;
+    font-weight: bold;
+    letter-spacing: 5px;
+}
+
+.subtitulo {
+    font-size: 20px;
+    margin-top: 8px;
+}
+
+
+/* =========================
+   MENÚ
+========================= */
+
+.menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 15px;
+
+    background: #6d123d;
+
+    flex-wrap: wrap;
+}
+
+.menu a {
+    color: white;
+    text-decoration: none;
+
+    padding: 12px 18px;
+
+    border-radius: 8px;
+
+    transition: 0.3s;
+}
+
+.menu a:hover {
+    background: #e83e8c;
+}
+
+
+/* =========================
+   PRINCIPAL
+========================= */
+
+.principal {
+    width: 90%;
+    max-width: 1200px;
+
+    margin: auto;
+
+    padding: 40px 0;
+}
+
+
+/* =========================
+   BIENVENIDA
+========================= */
+
+.bienvenida {
+    text-align: center;
+
+    background: white;
+
+    padding: 50px 30px;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 5px 20px
+        rgba(0, 0, 0, 0.12);
+
+    margin-bottom: 40px;
+}
+
+.bienvenida h1 {
+    color: #d63384;
+
+    font-size: 35px;
+
+    margin-bottom: 15px;
+}
+
+.bienvenida h2 {
+    color: #9d174d;
+
+    margin-bottom: 15px;
+}
+
+.bienvenida p {
+    font-size: 18px;
+
+    margin-bottom: 30px;
+}
+
+
+/* =========================
+   BOTONES
+========================= */
+
+.botones {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+}
+
+.boton {
+    display: inline-block;
+
+    background: #d63384;
+
+    color: white;
+
+    text-decoration: none;
+
+    padding: 15px 25px;
+
+    border-radius: 10px;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+.boton:hover {
+    background: #9d174d;
+
+    transform: translateY(-3px);
+}
+
+
+/* =========================
+   TARJETAS
+========================= */
+
+.tarjetas {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 20px;
+}
+
+.tarjeta {
+    background: white;
+
+    padding: 30px 20px;
+
+    text-align: center;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 4px 15px
+        rgba(0, 0, 0, 0.1);
+
+    transition: 0.3s;
+}
+
+.tarjeta:hover {
+    transform: translateY(-8px);
+}
+
+.icono {
+    font-size: 45px;
+
+    margin-bottom: 15px;
+}
+
+.tarjeta h3 {
+    color: #d63384;
+
+    font-size: 22px;
+
+    margin-bottom: 10px;
+}
+
+.tarjeta p {
+    line-height: 1.5;
+
+    margin-bottom: 20px;
+}
+
+.tarjeta a {
+    display: inline-block;
+
+    background: #d63384;
+
+    color: white;
+
+    text-decoration: none;
+
+    padding: 10px 18px;
+
+    border-radius: 8px;
+}
+
+.tarjeta a:hover {
+    background: #9d174d;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    text-align: center;
+
+    background: #6d123d;
+
+    color: white;
+
+    padding: 20px;
+
+    margin-top: 20px;
+
+    line-height: 1.8;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+
+    .tarjetas {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .tarjetas {
+        grid-template-columns: 1fr;
+    }
+
+    .logo {
+        font-size: 32px;
+    }
+
+    .bienvenida h1 {
+        font-size: 27px;
+    }
+
+}
+/* ========================================
+   FORMULARIO DE PRODUCTOS
+======================================== */
+
+.formulario-producto {
+
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 5px 20px
+        rgba(0, 0, 0, 0.10);
+
+    margin-bottom: 30px;
+}
+
+
+.grupo-formulario {
+
+    margin-bottom: 18px;
+
+}
+
+
+.grupo-formulario label {
+
+    display: block;
+
+    font-weight: bold;
+
+    margin-bottom: 7px;
+
+    color: #6d123d;
+
+}
+
+
+.grupo-formulario input,
+.grupo-formulario select {
+
+    width: 100%;
+
+    padding: 13px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 8px;
+
+    font-size: 15px;
+
+}
+
+
+.grupo-formulario input:focus,
+.grupo-formulario select:focus {
+
+    outline: none;
+
+    border-color: #d63384;
+
+    box-shadow:
+        0 0 5px
+        rgba(214, 51, 132, 0.25);
+
+}
+
+
+/* ========================================
+   BOTONES DEL FORMULARIO
+======================================== */
+
+.botones-formulario {
+
+    display: flex;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+
+}
+
+
+.boton-secundario {
+
+    background: #777;
+
+    border: none;
+
+    cursor: pointer;
+
+}
+
+
+/* ========================================
+   BÚSQUEDA
+======================================== */
+
+.busqueda {
+
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 5px 20px
+        rgba(0, 0, 0, 0.10);
+
+    margin-bottom: 30px;
+
+}
+
+
+.busqueda input {
+
+    width: 100%;
+
+    padding: 15px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 10px;
+
+    font-size: 16px;
+
+}
+
+
+/* ========================================
+   GRID DE PRODUCTOS
+======================================== */
+
+.productos-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 20px;
+
+}
+
+
+/* ========================================
+   TARJETA DEL PRODUCTO
+======================================== */
+
+.producto-card {
+
+    background: white;
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 5px 18px
+        rgba(0, 0, 0, 0.12);
+
+    transition: 0.3s;
+
+}
+
+
+.producto-card:hover {
+
+    transform: translateY(-5px);
+
+}
+
+
+.producto-imagen {
+
+    width: 100%;
+
+    height: 210px;
+
+    object-fit: cover;
+
+}
+
+
+.producto-sin-imagen {
+
+    height: 210px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-size: 70px;
+
+    background: #fde7f2;
+
+}
+
+
+.producto-info {
+
+    padding: 20px;
+
+}
+
+
+.producto-info h3 {
+
+    color: #9d174d;
+
+    margin: 10px 0;
+
+}
+
+
+.producto-info p {
+
+    margin: 8px 0;
+
+}
+
+
+.categoria {
+
+    display: inline-block;
+
+    background: #f8d7e7;
+
+    color: #9d174d;
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+}
+
+
+.precio {
+
+    color: #d63384;
+
+    font-size: 22px;
+
+    font-weight: bold;
+
+}
+
+
+/* ========================================
+   ACCIONES
+======================================== */
+
+.acciones {
+
+    display: flex;
+
+    gap: 8px;
+
+    margin-top: 15px;
+
+}
+
+
+.acciones button {
+
+    flex: 1;
+
+    border: none;
+
+    padding: 9px;
+
+    border-radius: 7px;
+
+    color: white;
+
+    cursor: pointer;
+
+}
+
+
+.btn-editar {
+
+    background: #6f42c1;
+
+}
+
+
+.btn-editar:hover {
+
+    background: #59339d;
+
+}
+
+
+.btn-eliminar {
+
+    background: #dc3545;
+
+}
+
+
+.btn-eliminar:hover {
+
+    background: #b02a37;
+
+}
+
+
+/* ========================================
+   SIN PRODUCTOS
+======================================== */
+
+.sin-productos {
+
+    grid-column: 1 / -1;
+
+    text-align: center;
+
+    background: white;
+
+    padding: 50px;
+
+    border-radius: 15px;
+
+}
+
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 1000px) {
+
+    .productos-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .productos-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+/* ========================================
+   TABLA DE CLIENTES
+======================================== */
+
+.tabla-contenedor {
+
+    width: 100%;
+
+    overflow-x: auto;
+
+    background: white;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 5px 18px
+        rgba(0, 0, 0, 0.10);
+
+}
+
+
+.tabla-contenedor table {
+
+    margin-top: 0;
+
+}
+
+
+.tabla-contenedor td button {
+
+    margin: 3px;
+
+    color: white;
+
+    border: none;
+
+    padding: 8px 10px;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+}
+
+
+.tabla-contenedor .btn-editar {
+
+    background: #6f42c1;
+
+}
+
+
+.tabla-contenedor .btn-editar:hover {
+
+    background: #59339d;
+
+}
+
+
+.tabla-contenedor .btn-eliminar {
+
+    background: #dc3545;
+
+}
+
+
+.tabla-contenedor .btn-eliminar:hover {
+
+    background: #b02a37;
+
+}
+/* ========================================
+   FACTURACIÓN
+======================================== */
+
+.datos-factura {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+
+}
+
+
+.totales {
+
+    background: white;
+
+    margin-top: 30px;
+
+    margin-bottom: 30px;
+
+    margin-left: auto;
+
+    max-width: 450px;
+
+    padding: 25px;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 5px 18px
+        rgba(0, 0, 0, 0.10);
+
+}
+
+
+.totales div {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    padding: 10px 0;
+
+    border-bottom: 1px solid #eee;
+
+}
+
+
+.totales strong {
+
+    color: #d63384;
+
+}
+
+
+.total-final {
+
+    font-size: 24px;
+
+    border-bottom: none !important;
+
+    margin-top: 10px;
+
+}
+
+
+.total-final strong {
+
+    color: #9d174d;
+
+}
+
+
+.botones-factura {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+
+    margin: 30px 0;
+
+}
+
+
+.boton-imprimir {
+
+    background: #198754;
+
+}
+
+
+.boton-imprimir:hover {
+
+    background: #146c43;
+
+}
+
+
+/* ========================================
+   IMPRESIÓN
+======================================== */
+
+@media print {
+
+    .menu,
+    footer,
+    .botones-factura,
+    .boton,
+    .formulario-producto:first-of-type,
+    .formulario-producto:nth-of-type(2) {
+
+        display: none !important;
+
+    }
+
+
+    body {
+
+        background: white;
+
+    }
+
+
+    .principal {
+
+        width: 100%;
+
+    }
+
+
+    .bienvenida {
+
+        box-shadow: none;
+
+        padding: 10px;
+
+    }
+
+
+    .tabla-contenedor {
+
+        box-shadow: none;
+
+    }
+
+
+    .totales {
+
+        box-shadow: none;
+
+    }
+
+}
+
+
+/* ========================================
+   RESPONSIVE FACTURACIÓN
+======================================== */
+
+@media (max-width: 800px) {
+
+    .datos-factura {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+/* ==========================================
+   HISTORIAL DE FACTURAS
+========================================== */
+
+#buscarFactura {
+    width: 100%;
+    max-width: 500px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.tabla-contenedor {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.tabla-contenedor table {
+    width: 100%;
+}
+
+.tabla-contenedor th {
+    white-space: nowrap;
+}
+
+.tabla-contenedor td {
+    text-align: center;
+}
+
+.sin-productos {
+    text-align: center;
+    padding: 30px;
+    font-size: 18px;
+}
+/* ==========================================
+   FONDO DE INICIO - BELLANOVA
+========================================== */
+
+body.inicio {
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.45),
+                        rgba(255, 255, 255, 0.45)),
+        url("../img/fondo2.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+/* ==========================================
+   LOGIN BELLANOVA
+========================================== */
+
+.login-body {
+
+    margin: 0;
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background-image:
+        linear-gradient(
+            rgba(255, 255, 255, 0.55),
+            rgba(255, 255, 255, 0.55)
+        ),
+        url("../img/fondo2.jpg");
+
+    background-size: cover;
+
+    background-position: center;
+
+    font-family: Arial, sans-serif;
+}
+
+
+.login-contenedor {
+
+    width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 20px;
+}
+
+
+.login-caja {
+
+    width: 360px;
+
+    background: rgba(255, 255, 255, 0.95);
+
+    padding: 35px;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.20);
+
+    text-align: center;
+}
+
+
+.login-caja h1 {
+
+    margin-bottom: 5px;
+
+}
+
+
+.login-subtitulo {
+
+    margin-top: 0;
+
+    margin-bottom: 15px;
+
+}
+
+
+.login-icono {
+
+    font-size: 50px;
+
+    margin: 15px;
+}
+
+
+.boton-login {
+
+    width: 100%;
+
+    border: none;
+
+    cursor: pointer;
+
+}
+
+
+.mensaje-login {
+
+    margin-top: 15px;
+
+    font-weight: bold;
+
+}
+
+
+.mensaje-login.error {
+
+    color: #c62828;
+
+}
+
+
+.mensaje-login.correcto {
+
+    color: #2e7d32;
+
+}
+/* ==========================================
+   BOTÓN CERRAR SESIÓN
+========================================== */
+
+.boton-salir {
+
+    border: none;
+
+    padding: 10px 16px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    background: #b71c1c;
+
+    color: white;
+
+    margin-left: 10px;
+}
+
+.boton-salir:hover {
+
+    opacity: 0.85;
+
+}
+/* ==============================
+   CIERRE DE CAJA
+   ============================== */
+
+.tarjeta-cierre {
+    max-width: 650px;
+    margin: 40px auto;
+    padding: 35px;
+    background: rgba(255, 255, 255, 0.96);
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+
+.tarjeta-cierre h3 {
+    font-size: 25px;
+    margin-bottom: 25px;
+}
+
+.tarjeta-cierre p {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    margin: 8px 0;
+    background: #f8f8f8;
+    border-radius: 10px;
+}
+
+.tarjeta-cierre hr {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 25px 0;
+}
+
+.tarjeta-cierre h2 {
+    margin: 25px 0;
+    padding: 18px;
+    border-radius: 12px;
+    background: #f3e5f5;
+    font-size: 25px;
+}
+
+.tarjeta-cierre .boton {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.tarjeta-cierre .boton:hover {
+    opacity: 0.85;
+    transform: scale(1.01);
+    transition: 0.2s;
+}
+.titulo-cierre {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 32px;
+}
